@@ -1,17 +1,20 @@
-from window import Window, Cell, Maze
+from graphics import Window
+from maze import Maze
 
-if __name__ == "__main__":
-    # Create a window
-    window = Window(height=600, width=800)
 
-    # Create a maze
-    maze = Maze(x1=10, y1=10, num_rows=5, num_cols=5, cell_size_x=30, cell_size_y=30, win=window)
+def main():
+    num_rows = 12
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-    # Optional: Print some information about the maze cells for verification
-    for i in range(len(maze._cells)):
-        for j in range(len(maze._cells[i])):
-            cell = maze._cells[i][j]
-            print(f"Cell[{i}][{j}] -> Position: (({cell.x1}, {cell.y1}), ({cell.x2}, {cell.y2}))")
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
-    # Keep the window open until closed by user
-    window.wait_for_close()
+    win.wait_for_close()
+
+
+main()

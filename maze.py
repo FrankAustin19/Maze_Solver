@@ -22,6 +22,11 @@ class Maze:
         self._cell_size_x = cell_size_x
         self._cell_size_y = cell_size_y
         self._win = win
+        
+        
+        self.seed = None  
+        if self.seed != None:
+            random.seed(seed)
 
         self._create_cells()
         self._break_entrance_and_exit()

@@ -1,22 +1,17 @@
-from window import Window, Point, Line
+from window import Window, Cell, Maze
 
 if __name__ == "__main__":
     # Create a window
     window = Window(height=600, width=800)
 
-    # Create some points
-    p1 = Point(100, 100)
-    p2 = Point(200, 200)
-    p3 = Point(200, 100)
-    p4 = Point(100, 200)
+    # Create a maze
+    maze = Maze(x1=10, y1=10, num_rows=5, num_cols=5, cell_size_x=30, cell_size_y=30, win=window)
 
-    # Create some lines
-    line1 = Line(p1, p2)
-    line2 = Line(p3, p4)
-
-    # Draw the lines on the window
-    window.draw_line(line1, "red")
-    window.draw_line(line2, "blue")
+    # Optional: Print some information about the maze cells for verification
+    for i in range(len(maze._cells)):
+        for j in range(len(maze._cells[i])):
+            cell = maze._cells[i][j]
+            print(f"Cell[{i}][{j}] -> Position: (({cell.x1}, {cell.y1}), ({cell.x2}, {cell.y2}))")
 
     # Keep the window open until closed by user
     window.wait_for_close()
